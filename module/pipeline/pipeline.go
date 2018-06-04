@@ -2,6 +2,7 @@ package pipeline
 
 import (
 	"errors"
+
 	log "github.com/Sirupsen/logrus"
 	"github.com/l-dandelion/cwgo/data"
 	"github.com/l-dandelion/cwgo/module"
