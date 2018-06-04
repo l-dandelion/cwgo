@@ -27,6 +27,10 @@ func NewRequest(httpReq *http.Request, extras ...map[string]interface{}) *Reques
 	}
 }
 
+func (req *Request) Valid() bool {
+	return req != nil && req.httpReq != nil
+}
+
 /*Get*/
 
 func (req *Request) HTTPReq() *http.Request {

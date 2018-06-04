@@ -27,7 +27,15 @@ func NewResponse(req *Request, httpResp *http.Response) *Response {
 	return &Response{req: req, httpResp: httpResp}
 }
 
+func (resp *Response) Valid() bool {
+	return resp != nil && resp.httpResp != nil
+}
+
 /*Get*/
+
+func (resp *Response) Request() *Request {
+	return resp.req
+}
 
 func (resp *Response) HTTPRequest() *http.Request {
 	return resp.req.HTTPReq()
