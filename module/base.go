@@ -1,7 +1,7 @@
 package module
 
 import(
-	"github.com/cwgo/data"
+	"github.com/l-dandelion/cwgo/data"
 )
 
 type Counts struct {

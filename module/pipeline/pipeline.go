@@ -3,8 +3,8 @@ package pipeline
 import (
 	"errors"
 	log "github.com/Sirupsen/logrus"
-	"github.com/cwgo/data"
-	"github.com/cwgo/module"
+	"github.com/l-dandelion/cwgo/data"
+	"github.com/l-dandelion/cwgo/module"
 )
 
 type myPipeline struct {

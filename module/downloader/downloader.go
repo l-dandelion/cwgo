@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	log "github.com/Sirupsen/logrus"
-	"github.com/cwgo/data"
-	"github.com/cwgo/module"
+	"github.com/l-dandelion/cwgo/data"
+	"github.com/l-dandelion/cwgo/module"
 )
 
 //重试次数

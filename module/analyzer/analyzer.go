@@ -2,9 +2,9 @@ package analyzer
 
 import (
 	log "github.com/Sirupsen/logrus"
-	"github.com/cwgo/data"
-	"github.com/cwgo/lib/reader"
-	"github.com/cwgo/module"
+	"github.com/l-dandelion/cwgo/data"
+	"github.com/l-dandelion/cwgo/lib/reader"
+	"github.com/l-dandelion/cwgo/module"
 	"github.com/pkg/errors"
 )
 
