@@ -1,6 +1,6 @@
 package module
 
-import(
+import (
 	"github.com/l-dandelion/cwgo/data"
 )
 
@@ -22,6 +22,10 @@ type SummaryStruct struct {
 type Module interface {
 	Counts() Counts
 	Summary() SummaryStruct
+	CalledCount() int64
+	AcceptedCount() int64
+	CompletedCount() int64
+	HandlingNumber() int64
 }
 
 //下载器
@@ -34,7 +38,7 @@ type Downloader interface {
 type Analyzer interface {
 	Module
 	RespParsers() []ParseResponse
-	Analyze(*data.Response) ([]data.Data, error)
+	Analyze(*data.Response) ([]data.Data, []error)
 }
 
 //响应解析器
