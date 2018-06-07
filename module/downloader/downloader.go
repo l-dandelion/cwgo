@@ -13,14 +13,11 @@ import (
 var RetryTimes = 3
 
 //只能通过new创建downloader
-func New(client *http.Client) (module.Downloader, error) {
-	if client == nil {
-		return nil, errors.New("Nil client.")
-	}
+func New(client *http.Client) module.Downloader {
 	return &myDownloader{
 		ModuleInternal: module.NewModuleInternal(),
 		httpClient:     client,
-	}, nil
+	}
 }
 
 type myDownloader struct {

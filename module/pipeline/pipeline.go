@@ -15,6 +15,14 @@ type myPipeline struct {
 	failFast bool
 }
 
+func New(itemProcessors []module.ProcessItem, failFast bool) module.Pipeline {
+	return &myPipeline{
+		ModuleInternal: module.NewModuleInternal(),
+		itemProcessors: itemProcessors,
+		failFast:       failFast,
+	}
+}
+
 /*Get*/
 
 /*
@@ -70,6 +78,3 @@ func (pipeline *myPipeline) Send(item data.Item) (errs []error) {
 	}
 	return
 }
-
-
-

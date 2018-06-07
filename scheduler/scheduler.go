@@ -3,7 +3,6 @@ package scheduler
 import (
 	"context"
 	"fmt"
-	"math"
 	"sync"
 	"time"
 
@@ -17,7 +16,10 @@ import (
 )
 
 //缓冲器大小
-var BufferCap uint32 = 100
+var (
+	BufferCap       uint32 = 1000
+	MaxBufferNumber uint32 = 10000
+)
 
 type Scheduler interface {
 	Name() string
@@ -111,7 +113,6 @@ func (sched *myScheduler) Init(
 	sched.downloaderPool = pool.New(requestArgs.MaxThread)
 	sched.analyzerPool = pool.New(requestArgs.MaxThread)
 	sched.pipelinePool = pool.New(requestArgs.MaxThread)
-
 	sched.initBufferPool()
 	sched.resetContext()
 	sched.summary = newSchedSummary(requestArgs, moduleArgs, sched)
@@ -237,15 +238,14 @@ func (sched *myScheduler) Stop() (err error) {
 	return nil
 }
 
-
 /*
  * 初始化缓冲池
  */
 func (sched *myScheduler) initBufferPool() {
-	sched.reqBufferPool, _ = buffer.NewPool(BufferCap, math.MaxUint32)
-	sched.respBufferPool, _ = buffer.NewPool(BufferCap, math.MaxUint32)
-	sched.itemBufferPool, _ = buffer.NewPool(BufferCap, math.MaxUint32)
-	sched.errorBufferPool, _ = buffer.NewPool(BufferCap, math.MaxUint32)
+	sched.reqBufferPool, _ = buffer.NewPool(BufferCap, MaxBufferNumber)
+	sched.respBufferPool, _ = buffer.NewPool(BufferCap, MaxBufferNumber)
+	sched.itemBufferPool, _ = buffer.NewPool(BufferCap, MaxBufferNumber)
+	sched.errorBufferPool, _ = buffer.NewPool(BufferCap, MaxBufferNumber)
 }
 
 /*

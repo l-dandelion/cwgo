@@ -13,6 +13,13 @@ type myAnalyzer struct {
 	respParsers []module.ParseResponse
 }
 
+func New(respParsers []module.ParseResponse) module.Analyzer {
+	return &myAnalyzer{
+		ModuleInternal: module.NewModuleInternal(),
+		respParsers:    respParsers,
+	}
+}
+
 //获取解析函数
 func (analyzer *myAnalyzer) RespParsers() []module.ParseResponse {
 	parsers := make([]module.ParseResponse, len(analyzer.respParsers))
