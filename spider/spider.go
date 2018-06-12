@@ -11,6 +11,7 @@ import (
 )
 
 type Spider interface {
+	Name() string
 	Init() error
 	Start() error
 	Stop() error
@@ -19,8 +20,8 @@ type Spider interface {
 }
 
 type mySpider struct {
-	Id              string
-	Name            string
+	id              string
+	name            string
 	RequestArgs     scheduler.RequestArgs
 	ModuleArgs      scheduler.ModuleArgs
 	InitialRequests []*data.Request
@@ -43,8 +44,8 @@ func NewSpiderWithTask(task Task) (Spider, error) {
 	a := analyzer.New(parsers)
 	p := pipeline.New(processors, task.FastFail)
 	return &mySpider{
-		Id:          task.Id,
-		Name:        task.Name,
+		id:          task.Id,
+		name:        task.Name,
 		RequestArgs: task.RequestArgs,
 		ModuleArgs: scheduler.ModuleArgs{
 			Downloader: d,
@@ -54,6 +55,10 @@ func NewSpiderWithTask(task Task) (Spider, error) {
 		InitialRequests: task.InitialRequests,
 		sched:           scheduler.New(task.Name),
 	}, nil
+}
+
+func (spider *mySpider) Name() string {
+	return spider.name
 }
 
 /*
